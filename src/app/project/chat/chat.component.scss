@@ -1,0 +1,343 @@
+.main {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  nav {
+    position: fixed;
+    top: 0px;
+    height: 100%;
+    padding: 10px 20px;
+    background-color: rgb(61, 97, 86);
+    color: white;
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+    .mainDashboard {
+      .mat-icon {
+        font-size: 35px;
+        cursor: pointer;
+      }
+    }
+    .footer {
+      position: absolute;
+      bottom: 50px;
+      > :last-child {
+        font-size: 35px;
+      }
+    }
+    .mat-icon {
+      margin: 10px auto;
+      height: unset;
+      width: unset;
+      cursor: pointer;
+    }
+
+    .mat-icon:hover {
+      scale: 1.1;
+    }
+    hr {
+      border: none;
+      border-bottom: 1px solid white;
+      color: white;
+      border-style: inset;
+      border-width: 1px;
+      margin: 0.5em auto;
+    }
+  }
+  .title_details {
+    position: fixed;
+
+    margin-left: 75px;
+    height: 60px;
+    padding: 20px;
+    border-bottom: 1px solid #b6b6b6;
+    box-shadow: 1px 5px 9px 0px rgba(113, 113, 113, 0.45);
+    width: 100%;
+    display: flex;
+
+    > div:not(:last-child) {
+      border-right: 1px solid #b6b6b6;
+      padding: 10px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      > div {
+        border: 1px solid black;
+        height: 30px;
+        width: 30px;
+        text-align: center;
+        margin-right: 20px;
+        padding-top: 5px;
+      }
+      h2 {
+        margin: 0px;
+        font-size: 24px;
+      }
+    }
+    > div {
+      align-items: center;
+      display: flex;
+      .mat-icon {
+        font-size: 30px;
+        margin: 0px 10px;
+        cursor: pointer;
+      }
+    }
+    .write_up {
+      span {
+        font-size: 16px;
+        color: #b6b6b6;
+        width: 800px;
+      }
+    }
+    .selectNumber {
+      border: 1px solid #b6b6b6;
+      border-radius: 5px;
+      height: 40px;
+      padding: 10px;
+      margin-left: 300px;
+    }
+    .icons {
+      width: 100px;
+      position: absolute;
+      top: 35px;
+      right: 150px;
+      .mat-icon {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .chat {
+    margin-top: 100px;
+    margin-left: 75px;
+    display: flex;
+    .chat_nav {
+      width: 300px;
+      background-color: #f6f6f6;
+      padding: 50px 30px;
+      height: 100%;
+      > div {
+        //  background-color: white;
+        overflow: hidden;
+        border-radius: 2px;
+        position: relative;
+        span {
+          display: inline-block;
+          background-color: rgb(61, 97, 86);
+          width: 4px;
+          height: calc(100% + 20px);
+          position: absolute;
+          left: 0px;
+          opacity: 0;
+        }
+
+        padding: 0px 20px 20px;
+        font-weight: normal;
+        h2 {
+          margin: 0px;
+          font-size: 18px;
+          margin-bottom: 10px;
+          margin-top: 20px;
+        }
+        h4 {
+          margin: 0px;
+          font-size: 16px;
+          color: #b6b6b6;
+        }
+      }
+      > div:not(:first-child) {
+        border-top: 1px solid #e6e6e6;
+      }
+      > div:hover {
+        background-color: white;
+        span {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .chatBody {
+    padding: 50px;
+    position: relative;
+    .tableT {
+      border: 1px solid black;
+    }
+    h2 {
+      margin: 0px;
+      font-size: 18px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+    h4 {
+      margin: 0px;
+      font-size: 16px;
+      color: #b6b6b6;
+      margin-bottom: 30px;
+      max-width: 800px;
+    }
+    .filter {
+      height: 40px;
+      padding: 10px;
+      input {
+        width: 250px;
+        padding: 10px;
+      }
+    }
+
+    .trainBotT {
+      .greenBTN {
+        height: 40px;
+        width: 120px;
+        margin-bottom: 20px;
+        padding: 5px;
+        background-color: rgb(61, 97, 86);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        .mat-icon {
+          font-size: 20px;
+        }
+      }
+      h2 {
+        margin: 20px 0px;
+      }
+    }
+
+    .intentT {
+      > div {
+        border: 1px solid gray;
+        position: relative;
+      }
+      .filterAndButton {
+        display: flex;
+
+        h2 {
+          position: absolute;
+          top: 55px;
+          left: 30px;
+        }
+      }
+      .greenBTN {
+        height: 40px;
+        width: 120px;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        padding: 5px;
+        background-color: rgb(61, 97, 86);
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        .mat-icon {
+          font-size: 20px;
+        }
+      }
+      .mat-table {
+        width: 100%;
+      }
+
+      .mat-row.example-detail-row {
+        min-height: 0;
+      }
+
+      .mat-row.example-element-row:not(.example-expanded-row):hover {
+        background: #777;
+      }
+
+      .mat-row.example-element-row:not(.example-expanded-row):active {
+        background: #efefef;
+      }
+
+      .example-element-row .mat-cell {
+        border-bottom-width: 0;
+      }
+
+      .example-element-detail {
+        overflow: hidden;
+        display: flex;
+      }
+
+      .example-element-symbol {
+        font-weight: bold;
+        font-size: 40px;
+        line-height: normal;
+      }
+
+      .example-element-description {
+        padding: 16px;
+      }
+
+      .example-element-description-attribution {
+        opacity: 0.5;
+      }
+
+      .intentTable {
+        border: 1px solid gray;
+        padding: 10px;
+      }
+      .mat-header-cell {
+        background-color: rgb(196, 248, 231);
+      }
+    }
+
+    .catchT {
+      .selectNumber {
+        border: 1px solid gray;
+        height: 40px;
+        width: 250px;
+        padding: 5px 10px;
+        margin-bottom: 30px;
+      }
+      h6 {
+        font-size: 16px;
+        margin: 0px 0px 10px;
+      }
+
+      form > div {
+        display: flex;
+        flex-direction: column;
+      }
+      .grayBTN {
+        margin-top: 5px;
+        height: 25px;
+        width: 120px;
+        margin-bottom: 20px;
+        padding: 0px 5px;
+        background-color: #b6b6b6;
+        color: black;
+        font-size: 16px;
+        cursor: pointer;
+        .mat-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+//mat table
+
+table.mat-table {
+  width: 100%;
+  th.mat-header-cell:first-of-type,
+  th.mat-header-cell,
+  th.mat-header-cell:last-of-type {
+    font-size: 15px;
+    color: black;
+  }
+  tr.mat-header-row {
+    background-color: rgb(194, 254, 219);
+  }
+}
+
+.mat-elevation-z8 {
+  box-shadow: none;
+}

@@ -1,0 +1,9 @@
+<div class="modal">
+  <div class="modal__overlay" (click)="close($event)"></div>
+  <div class="modal__modal__content">
+    <h2 [innerHTML]="title"></h2>
+    <div class="modal__body">
+      <ng-container *ngTemplateOutlet="contentTpl"></ng-container>
+    </div>
+  </div>
+</div>

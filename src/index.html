@@ -1,13 +1,48 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>InstinctAi</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>InstinctAi</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <app-root></app-root>
+
+    <style>
+      /* App Loader */
+
+      .loader::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 20px;
+        bottom: 0;
+        z-index: 30;
+        min-width: 800px;
+        background-color: #fff;
+        background-image: url("./assets/Spinner-1s-200px\ \(2\).svg");
+        background-size: 500px 500px;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+
+      .animator::before {
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s 0.7s, opacity 0.7s linear;
+      }
+    </style>
+  </body>
 </html>

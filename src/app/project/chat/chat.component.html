@@ -1,0 +1,256 @@
+<div class="main">
+  <nav>
+    <div class="mainDashboard">
+      <mat-icon routerLink="/home">space_dashboard</mat-icon>
+    </div>
+    <hr />
+    <div class="middleIcons">
+      <mat-icon routerLinkActive="active-link">question_answer</mat-icon>
+      <mat-icon>account_circle</mat-icon>
+      <mat-icon>dashboard</mat-icon>
+    </div>
+    <div class="footer">
+      <mat-icon>settings</mat-icon>
+      <mat-icon>account_box</mat-icon>
+    </div>
+  </nav>
+
+  <div class="title_details">
+    <div>
+      <div class="logo">
+        <div>Ai</div>
+        <h2>Instinct AI</h2>
+      </div>
+    </div>
+
+    <div class="write_up">
+      <span>
+        Ai engine to analyze chat conversations, detecting user intent,
+        answering queries automatically and handling off-traget conversations.
+      </span>
+
+      <select class="selectNumber">
+        <option value="number">+91 9999999999</option>
+      </select>
+    </div>
+    <div class="icons">
+      <mat-icon>circle_notifications</mat-icon>
+      <mat-icon (click)="logout()">logout</mat-icon>
+    </div>
+  </div>
+
+  <div class="chat">
+    <div class="chat_nav">
+      <div (click)="trainBotTab()">
+        <span></span>
+        <h2>Train your bot</h2>
+        <h4>
+          Improve performace by providing user utterances or frequently asked
+          questions
+        </h4>
+      </div>
+      <div (click)="intentTab()">
+        <span></span>
+        <h2>Intents</h2>
+        <h4>
+          View all intents you have created to improve the bot performance.
+        </h4>
+      </div>
+      <div (click)="catchAllTab()">
+        <span></span>
+        <h2>Catch All</h2>
+        <h4>Set up flows to handle unanswered or not helpful resources.</h4>
+      </div>
+      <div (click)="summaryTab()">
+        <span></span>
+        <h2>Summary</h2>
+        <h4>
+          Learn how your bot is performing and how you can make it better.
+        </h4>
+      </div>
+    </div>
+
+    <div class="chatBody" [ngClass]="bodyLoader ? 'loader' : ''">
+      <h2>{{ this.tabHeading }}</h2>
+      <h4>
+        {{ this.tabSubHeading }}
+      </h4>
+
+      <div *ngIf="summary" class="tableT">
+        <div class="filter">
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="search intent or utterances "
+          />
+        </div>
+        <table mat-table [dataSource]="this.tableData" class="mat-elevation-z8">
+          <ng-container matColumnDef="Intent">
+            <th mat-header-cell *matHeaderCellDef>Intent</th>
+            <td mat-cell *matCellDef="let emp">{{ emp?.intent }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Messages">
+            <th mat-header-cell *matHeaderCellDef>Messages</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.msg }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Importance">
+            <th mat-header-cell *matHeaderCellDef>Importance</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.imp }} %</td>
+          </ng-container>
+
+          <ng-container matColumnDef="Accuracy">
+            <th mat-header-cell *matHeaderCellDef>Accuracy</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.accuracy }}</td>
+          </ng-container>
+          <ng-container matColumnDef="CatchAll">
+            <th mat-header-cell *matHeaderCellDef>Catch All</th>
+            <td mat-cell *matCellDef="let emp">{{ emp.catch }}</td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="intentatadisplayedColumns; sticky: true"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="
+              let emp;
+              columns: intentatadisplayedColumns;
+              let i = index
+            "
+          ></tr>
+        </table>
+      </div>
+
+      <div class="trainBotT" *ngIf="trainBot">
+        <button class="greenBTN" (click)="addIntent()">
+          <mat-icon>add</mat-icon>
+          Add intent
+        </button>
+        <hr />
+        <h2>Insights</h2>
+        <hr />
+        <div></div>
+      </div>
+
+      <div class="catchT" *ngIf="catchAll">
+        <form [formGroup]="catchTForm">
+          <mat-select
+            formControlName="option"
+            name="option"
+            class="selectNumber"
+          >
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let food of foods" [value]="food.viewValue">
+              {{ food.viewValue }}
+            </mat-option>
+          </mat-select>
+
+          <div>
+            <h6>Add reply</h6>
+            <textarea
+              rows="4"
+              cols="50"
+              placeholder="bot says"
+              formControlName="reply"
+            ></textarea>
+            <button class="grayBTN" (click)="addReply()">
+              <mat-icon>add</mat-icon>
+              Add intent
+            </button>
+
+            {{ this.chatIntentArray | json }}
+          </div>
+        </form>
+      </div>
+
+      <div class="intentT" *ngIf="intentMain">
+        <div>
+          <div class="filterAndButton">
+            <div class="filter">
+              <input
+                matInput
+                (keyup)="applyFilterToIntent($event)"
+                placeholder="search intent or utterances "
+              />
+            </div>
+            <button class="greenBTN" (click)="openIntentModal()">
+              <mat-icon>add</mat-icon>
+              Add intent
+            </button>
+            <h2>Intent</h2>
+          </div>
+          <mat-table
+            [dataSource]="dataSource"
+            multiTemplateDataRows
+            class="mat-elevation-z8"
+          >
+            <ng-container
+              matColumnDef="{{ column }}"
+              *ngFor="let column of columnsToDisplay"
+            >
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let element">
+                {{ element[column] }}
+              </mat-cell>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+              <mat-cell *matCellDef="let element">
+                <div
+                  class="example-element-detail"
+                  [@detailExpand]="
+                    element == expandedElement ? 'expanded' : 'collapsed'
+                  "
+                >
+                  <div class="example-element-description">
+                    {{ element.type | json }}
+                  </div>
+                </div>
+              </mat-cell>
+            </ng-container>
+
+            <mat-header-row
+              *matHeaderRowDef="columnsToDisplay"
+            ></mat-header-row>
+            <mat-row
+              *matRowDef="let element; columns: columnsToDisplay"
+              class="example-element-row"
+              [class.example-expanded-row]="expandedElement === element"
+              (click)="
+                expandedElement = expandedElement === element ? null : element
+              "
+            >
+            </mat-row>
+            <mat-row
+              *matRowDef="let row; columns: ['expandedDetail']"
+              class="example-detail-row"
+            ></mat-row>
+          </mat-table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #confirm>
+  <form class="confirmationMessage">
+    <p>Please enter the intent name</p>
+    <input
+      type="text"
+      placeholder="enter intent"
+      [(ngModel)]="intentName"
+      [ngModelOptions]="{ standalone: true }"
+    />
+  </form>
+
+  <div class="btn">
+    <button class="greenBTN" (click)="addIntentToIntentArray()">
+      <mat-icon>add</mat-icon>
+      Add intent
+    </button>
+  </div>
+</ng-template>
